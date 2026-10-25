@@ -1,0 +1,14 @@
+Carpetas de compilación y distribución de NetBeans
+/build/
+/dist/
+/target/
+
+Configuración privada de NetBeans
+/nbproject/private/
+/nbproject/build-impl.xml
+/nbproject/genfiles.properties
+
+Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
