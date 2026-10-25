@@ -1,0 +1,147 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+# Compilación y archivos generados (Maven)
+=======
+Compilación y archivos generados (Maven)
+>>>>>>> 1870b827a70bb39363fe3dc274462849a78d66ef
+=======
+Compilación y archivos generados (Maven)
+=======
+# Compilación y archivos generados (Maven)
+>>>>>>> RamaModMili
+>>>>>>> 43fe3322220687d2d023ca9c66d182c4ca4cf168
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.rar
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+# Maven Wrapper JAR (opcional, si no usas el wrapper compilado)
+.mvn/wrapper/maven-wrapper.jar
+
+# IDEs - NetBeans
+=======
+=======
+>>>>>>> 43fe3322220687d2d023ca9c66d182c4ca4cf168
+Maven Wrapper JAR (opcional, si no usas el wrapper compilado)
+.mvn/wrapper/maven-wrapper.jar
+
+IDEs - NetBeans
+<<<<<<< HEAD
+>>>>>>> 1870b827a70bb39363fe3dc274462849a78d66ef
+=======
+=======
+# Maven Wrapper JAR (opcional, si no usas el wrapper compilado)
+.mvn/wrapper/maven-wrapper.jar
+
+# IDEs - NetBeans
+>>>>>>> RamaModMili
+>>>>>>> 43fe3322220687d2d023ca9c66d182c4ca4cf168
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+# IDEs - IntelliJ IDEA
+=======
+IDEs - IntelliJ IDEA
+>>>>>>> 1870b827a70bb39363fe3dc274462849a78d66ef
+=======
+IDEs - IntelliJ IDEA
+=======
+# IDEs - IntelliJ IDEA
+>>>>>>> RamaModMili
+>>>>>>> 43fe3322220687d2d023ca9c66d182c4ca4cf168
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+# IDEs - Eclipse / Spring Tool Suite (STS)
+=======
+IDEs - Eclipse / Spring Tool Suite (STS)
+>>>>>>> 1870b827a70bb39363fe3dc274462849a78d66ef
+=======
+IDEs - Eclipse / Spring Tool Suite (STS)
+=======
+# IDEs - Eclipse / Spring Tool Suite (STS)
+>>>>>>> RamaModMili
+>>>>>>> 43fe3322220687d2d023ca9c66d182c4ca4cf168
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+# IDEs - VS Code
+.vscode/
+
+# Logs y archivos temporales del SO
+*.log
+*.tmp
+*.bak
+*.swp
+=======
+=======
+>>>>>>> 43fe3322220687d2d023ca9c66d182c4ca4cf168
+IDEs - VS Code
+.vscode/
+
+Logs y archivos temporales del SO
+*.log
+*.tmp
+*.bak
+.swp
+<<<<<<< HEAD
+>>>>>>> 1870b827a70bb39363fe3dc274462849a78d66ef
+=======
+=======
+# IDEs - VS Code
+.vscode/
+
+# Logs y archivos temporales del SO
+*.log
+*.tmp
+*.bak
+*.swp
+>>>>>>> RamaModMili
+>>>>>>> 43fe3322220687d2d023ca9c66d182c4ca4cf168
+.DS_Store
+Thumbs.db
+
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+# Archivos de configuración con credenciales o entornos locales
+src/main/resources/application.properties
+src/main/resources/application-*.properties
+=======
+Archivos de configuración con credenciales o entornos locales
+src/main/resources/application.properties
+src/main/resources/application-.properties
+>>>>>>> 1870b827a70bb39363fe3dc274462849a78d66ef
+=======
+Archivos de configuración con credenciales o entornos locales
+src/main/resources/application.properties
+src/main/resources/application-.properties
+=======
+# Archivos de configuración con credenciales o entornos locales
+src/main/resources/application.properties
+src/main/resources/application-*.properties
+>>>>>>> RamaModMili
+>>>>>>> 43fe3322220687d2d023ca9c66d182c4ca4cf168
