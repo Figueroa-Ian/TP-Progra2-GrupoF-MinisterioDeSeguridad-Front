@@ -14,5 +14,8 @@
         <a href="crearJuez.jsp" style="display: inline-block; margin-bottom: 15px; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">
             + Registrar Nuevo Juez
         </a>
+        <a href="crearDelincuente.jsp" style="display: inline-block; margin-bottom: 15px; padding: 8px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;">
+            + Registrar Nuevo Delincuente
+        </a>
     </body>
 </html>
