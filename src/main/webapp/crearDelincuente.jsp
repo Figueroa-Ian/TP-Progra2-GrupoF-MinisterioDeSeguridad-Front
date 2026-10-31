@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Registrar Juez - Ministerio del Interior</title>
+        <title>Registrar Delincuente - Ministerio del Interior</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
@@ -105,9 +105,9 @@
     </head>
     <body>
         <div class="contenedor">
-            <h2>Registrar Nuevo Juez</h2>
+            <h2>Registrar Nuevo Delincuente</h2>
 
-            <form id="formJuez" onsubmit="guardarJuez(event)">
+            <form id="formDelincuente" onsubmit="guardarDelincuente(event)">
                 <!-- Datos de Persona -->
                 <div class="campo">
                     <label for="dni">DNI:</label>
@@ -134,20 +134,20 @@
                     <input type="date" id="fechaNacimiento" required>
                 </div>
 
-                <!-- Datos propios de Juez -->
-                <div class="seccion-titulo">Datos del Juzgado</div>
+                <!-- Datos propios de Delincuente -->
+                <div class="seccion-titulo">Datos del Delincuente</div>
 
                 <div class="campo">
-                    <label for="claveJuzgado">Clave del Juzgado:</label>
-                    <input type="text" id="claveJuzgado" required placeholder="Ej: JUZ-CIV-04">
+                    <label for="claveDelincuente">Clave del Delincuente:</label>
+                    <input type="text" id="claveDelincuente" required placeholder="Ej: DEL-01">
                 </div>
 
                 <div class="campo">
-                    <label for="antiguedadServicio">Años de Antigüedad:</label>
-                    <input type="number" id="antiguedadServicio" min="0" required placeholder="Ej: 12">
+                    <label for="numeroBanda">Numero de la Banda:</label>
+                    <input type="number" id="numeroBanda" min="0" required placeholder="Ej: 1">
                 </div>
 
-                <button type="submit">Guardar Juez</button>
+                <button type="submit">Guardar Delincuente</button>
                 <a href="resultados.jsp" class="btn-volver">← Volver al listado</a>
             </form>
 
@@ -155,26 +155,26 @@
         </div>
 
         <script>
-            function guardarJuez(event) {
+            function guardarDelincuente(event) {
                 event.preventDefault();
 
-                var nuevoJuez = {
+                var nuevoDelincuente = {
                     dni: document.getElementById("dni").value,
                     nombre: document.getElementById("nombre").value,
                     apellido: document.getElementById("apellido").value,
                     direccion: document.getElementById("direccion").value,
                     fechaNacimiento: document.getElementById("fechaNacimiento").value,
-                    rol: "JUEZ",
-                    claveJuzgado: document.getElementById("claveJuzgado").value,
-                    antiguedadServicio: parseInt(document.getElementById("antiguedadServicio").value, 10) || 0
+                    rol: "DELINCUENTE",
+                    claveDelincuente: document.getElementById("claveDelincuente").value,
+                    numeroBanda: parseInt(document.getElementById("numeroBanda").value, 10) || 0
                 };
 
-                fetch("http://localhost:8080/api/jueces", {
+                fetch("http://localhost:8080/api/delincuentes", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(nuevoJuez)
+                    body: JSON.stringify(nuevoDelincuente)
                 })
                 .then(function(res) {
                     if (res.status === 201 || res.ok) {
@@ -186,15 +186,15 @@
                 .then(function(data) {
                     var mensajeDiv = document.getElementById("mensaje");
                     mensajeDiv.className = "exito";
-                    mensajeDiv.innerText = "¡Juez registrado correctamente! ID asignado: " + data.id;
+                    mensajeDiv.innerText = "¡Delincuente registrado correctamente! ID asignado: " + data.id;
                     mensajeDiv.style.display = "block";
 
-                    document.getElementById("formJuez").reset();
+                    document.getElementById("formDelincuente").reset();
                 })
                 .catch(function(err) {
                     var mensajeDiv = document.getElementById("mensaje");
                     mensajeDiv.className = "error";
-                    mensajeDiv.innerText = "Error al registrar el juez (" + err.message + ")";
+                    mensajeDiv.innerText = "Error al registrar el delincuente (" + err.message + ")";
                     mensajeDiv.style.display = "block";
                 });
             }
