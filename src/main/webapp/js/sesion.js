@@ -21,6 +21,7 @@ var Sesion = {
     destino: function (rol) {
         var r = (rol || "").toUpperCase();
         if (r === "ADMIN" || r === "ADMINISTRADOR") return "admin.jsp";
+        if (r === "INVESTIGADOR") return "investigador.jsp";
         return "panel.jsp"; // JUEZ, VIGILANTE, INVESTIGADOR, etc.
     },
     /* Llamar al inicio de cada vista protegida. Si no hay sesión (o no corresponde el rol) vuelve al login. */

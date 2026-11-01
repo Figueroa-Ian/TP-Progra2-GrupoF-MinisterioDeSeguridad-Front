@@ -26,6 +26,7 @@
             <a class="btn" href="menuInvestigadores.jsp">Menú Investigadores</a>
             <a class="btn" href="menuExpedientes.jsp">Menú Expedientes</a>
             <a class="btn" href="menuVigilantes.jsp">Menú Vigilantes</a>
+            <a class="btn" href="menuContrataciones.jsp">Menú Contrataciones</a>
         </div>
 
         <script src="js/sesion.js"></script>

@@ -80,6 +80,6 @@ public class NavegacionServlet extends HttpServlet {
 
         // 5. Enviamos la lista de Strings al JSP
         request.setAttribute("listaParaMostrar", listaParaMostrar);
-        request.getRequestDispatcher("resultados.jsp").forward(request, response);
+        request.getRequestDispatcher("listadoJueces.jsp").forward(request, response);
     }
 }
