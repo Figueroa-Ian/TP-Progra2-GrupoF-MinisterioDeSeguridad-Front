@@ -23,7 +23,7 @@
             <a class="btn" href="crearJuez.jsp">+ Registrar Juez</a>
 
             <a class="btn" href="crearDelincuente.jsp">Menú Delincuentes</a>
-
+            
             <!-- Pendientes: todavía no hay pantalla en el Front -->
             <a class="btn deshabilitado" href="#" title="Próximamente">Menú Vigilantes</a>
             <a class="btn deshabilitado" href="#" title="Próximamente">Menú Bandas</a>
