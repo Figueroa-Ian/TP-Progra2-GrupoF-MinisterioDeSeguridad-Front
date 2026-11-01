@@ -27,7 +27,7 @@
             // Opciones por rol. Agregá/quitá según lo que le corresponda ver a cada uno.
             var OPCIONES = {
                 JUEZ:       [{ texto: "Ver nómina de Jueces", href: "buscar" }],
-                VIGILANTE:  [],
+                VIGILANTE:  [{ texto: "Ver mis datos", href: "vigilante.jsp" }],
                 INVESTIGADOR: []
             };
 

@@ -148,7 +148,7 @@
                 </div>
 
                 <button type="submit">Guardar Juez</button>
-                <a href="resultados.jsp" class="btn-volver">← Volver al listado</a>
+                <a href="menuJueces.jsp" class="btn-volver">← Volver al menú</a>
             </form>
 
             <div id="mensaje"></div>
