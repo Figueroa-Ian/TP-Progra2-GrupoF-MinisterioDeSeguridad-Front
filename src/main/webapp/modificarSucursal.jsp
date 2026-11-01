@@ -9,9 +9,6 @@
         <style>
             .menu { max-width: 480px; margin: 40px auto; }
             #zonaForm { display: none; }
-            .campo { margin-bottom: 14px; }
-            label { font-weight: bold; font-size: 14px; display: block; margin-bottom: 5px; }
-            input[type="text"], input[type="number"] { width: 100%; padding: 9px; border: 1px solid #ced4da; border-radius: 4px; box-sizing: border-box; }
         </style>
     </head>
     <body>
@@ -31,19 +28,7 @@
             <div id="zonaForm">
                 <p id="titulo" style="font-weight:bold"></p>
                 <p style="font-size:12px;color:#6c757d;margin-top:0">Acá se modifican los datos de la sucursal.</p>
-                
-                <!-- Formulario de modificación de sucursal -->
-                <form id="formModificar" onsubmit="guardar(event)">
-                    <div class="campo">
-                        <label for="nombreSucursal">Nombre:</label>
-                        <input type="text" id="nombreSucursal" required>
-                    </div>
-                    <div class="campo">
-                        <label for="direccionSucursal">Dirección:</label>
-                        <input type="text" id="direccionSucursal" required>
-                    </div>
-                    <button type="submit" id="btnGuardar">Guardar cambios</button>
-                </form>
+                <div id="contenedorForm"></div>
             </div>
 
             <div id="aviso" class="aviso"></div>
@@ -53,80 +38,51 @@
 
         <script src="js/sesion.js"></script>
         <script src="js/vistas.js"></script>
+        <script src="js/sucursales.js"></script>
         <script>
             var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
             if (u) document.getElementById("saludo").innerText = "Administrador · " + u.mail;
 
             var idActual = null;
+            Sucursales.montar("contenedorForm", false, "Guardar cambios", guardar);
 
             function cargar(event) {
                 event.preventDefault();
-                document.getElementById("aviso").style.display = "none";
+                Sucursales.ocultarAviso();
                 document.getElementById("zonaForm").style.display = "none";
                 idActual = null;
 
                 var id = document.getElementById("idBuscado").value;
-                Vistas.pedir("/sucursales/" + id)
+                Vistas.pedir(Sucursales.rutas.buscar(id))
                     .then(function (s) {
                         idActual = s.id;
-                        // Rellenamos los inputs con los datos actuales de la sucursal
-                        document.getElementById("nombreSucursal").value = s.nombre || "";
-                        document.getElementById("direccionSucursal").value = s.direccion || "";
-
+                        Sucursales.llenar(s);
+                        var nombre = s.nombre || ("Sucursal N° " + idActual);
                         document.getElementById("titulo").textContent = "Editando la sucursal N° " + idActual + (s.nombre ? " — " + s.nombre : "");
                         document.getElementById("zonaForm").style.display = "block";
                     })
                     .catch(function (err) {
                         console.error(err);
-                        var aviso = document.getElementById("aviso");
-                        aviso.className = "aviso error";
-                        aviso.textContent = Vistas.textoError(err, "No existe una sucursal con ese Id.");
-                        aviso.style.display = "block";
+                        Sucursales.aviso("err", Vistas.textoError(err, "No existe una sucursal con ese Id."));
                     });
             }
 
-            function guardar(event) {
-                event.preventDefault();
+            function guardar(sucursal) {
                 if (idActual === null) return;
-
                 var boton = document.getElementById("btnGuardar");
-                boton.disabled = true;
-
-                var sucursalModificada = {
-                    nombre: document.getElementById("nombreSucursal").value,
-                    direccion: document.getElementById("direccionSucursal").value
-                };
-
-                fetch("http://localhost:8080/api/sucursales/" + idActual, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(sucursalModificada)
-                })
-                .then(function (res) {
-                    if (res.ok) {
-                        return res.json();
-                    } else {
-                        throw new Error("Error en la respuesta del servidor");
-                    }
-                })
-                .then(function () {
-                    var aviso = document.getElementById("aviso");
-                    aviso.className = "aviso ok";
-                    aviso.textContent = "Sucursal N° " + idActual + " modificada correctamente.";
-                    aviso.style.display = "block";
-                })
-                .catch(function (err) {
-                    console.error(err);
-                    var aviso = document.getElementById("aviso");
-                    aviso.className = "aviso error";
-                    aviso.textContent = "Error al modificar la sucursal.";
-                    aviso.style.display = "block";
-                })
-                .then(function () { 
-                    boton.disabled = false; 
-                });
+                if (boton) boton.disabled = true;
+                Sucursales.ocultarAviso();
+                Sucursales.enviar("PUT", Sucursales.rutas.modificar(idActual), sucursal)
+                    .then(function () {
+                        Sucursales.aviso("ok", "Sucursal N° " + idActual + " modificada correctamente.");
+                    })
+                    .catch(function (err) {
+                        console.error(err);
+                        Sucursales.aviso("err", Sucursales.textoError(err, "modificar la sucursal"));
+                    })
+                    .then(function () { 
+                        if (boton) boton.disabled = false; 
+                    });
             }
         </script>
     </body>
