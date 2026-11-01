@@ -14,7 +14,26 @@ var Vistas = (function () {
         fechaNacimiento: "Fecha de nacimiento",
         rol: "Rol",
         mail: "Mail",
-        numeroBanda: "N° de banda"
+        numeroBanda: "N° de banda",
+        nroExpediente: "N° de expediente",
+        fecha: "Fecha",
+        codigoSucursal: "Sucursal",
+        claveJuez: "Juez",
+        claveDelincuente: "Delincuente",
+        clavesDelincuentes: "Delincuentes",
+        descripcion: "Descripción",
+        esCulpable: "Es culpable",
+        tieneCondena: "Tiene condena",
+        anosCondena: "Años de condena",
+        anosVigenciaCondena: "Años de vigencia",
+        condenaVigente: "Condena vigente",
+        ilicito: "Ilícito",
+        tipoJuridico: "Tipo jurídico",
+        tipoAccion: "Tipo de acción",
+        tipoIntencion: "Tipo de intención",
+        legajo: "Legajo",
+        edad: "Edad",
+        disponibleTrabajar: "Disponible para trabajar"
     };
 
     // Estilos de tabla, ficha, buscador y "volver" (se inyectan una sola vez)

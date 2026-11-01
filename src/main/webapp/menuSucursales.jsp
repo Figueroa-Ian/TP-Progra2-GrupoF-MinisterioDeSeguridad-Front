@@ -28,18 +28,19 @@
         <div class="menu contenedor">
             <h1>Menú Sucursales</h1>
 
-            <!-- ID btnCrear para controlar visibilidad si es Investigador -->
-            <a id="btnCrear" class="btn deshabilitado" href="#" title="Próximamente">+ Registrar Sucursal</a>
-
+            <!-- ID btnCrear asignado para ocultar si es INVESTIGADOR -->
+            <a id="btnCrear" class="btn" href="crearSucursal.jsp">+ Registrar Sucursal</a>
             <a class="btn" href="listadoSucursales.jsp">Ver Listado Sucursales</a>
             <a class="btn" href="buscarSucursal.jsp">Buscar por Id</a>
-
+            
+            <!-- ID btnVolver asignado para redirigir dinámicamente -->
             <a id="btnVolver" class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
 
         <script src="js/sesion.js"></script>
         <script>
             var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
+
             if (u) {
                 var rol = (u.rol || "").toUpperCase();
                 document.getElementById("saludo").innerText = rol + " · " + u.mail;

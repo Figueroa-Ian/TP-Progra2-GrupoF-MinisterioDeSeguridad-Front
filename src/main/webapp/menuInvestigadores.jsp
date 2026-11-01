@@ -33,9 +33,6 @@
 
             <!-- Enlace habilitado al nuevo listado -->
             <a class="btn" href="listadoInvestigadores.jsp">Ver Listado Investigadores</a>
-
-            <a class="btn deshabilitado" href="#" title="Próximamente">Buscar por Id</a>
-
             <!-- ID btnVolver para redirigir según el rol -->
             <a id="btnVolver" class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
