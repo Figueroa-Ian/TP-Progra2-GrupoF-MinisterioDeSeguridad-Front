@@ -11,6 +11,7 @@
             table { width: 100%; border-collapse: collapse; margin-top: 15px; }
             th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
             th { background-color: #f2f2f2; }
+            .error { color: #721c24; background-color: #f8d7da; padding: 10px; border-radius: 4px; }
         </style>
     </head>
     <body>
@@ -34,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody id="cuerpoTabla">
-                    <!-- JS loop render mapping data target insertion point -->
+                    <!-- Filas cargadas dinámicamente -->
                 </tbody>
             </table>
 
@@ -45,24 +46,27 @@
         </div>
 
         <script src="js/sesion.js"></script>
-        <script src="js/vistas.js"></script>
         <script>
             var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
             if (u) {
-                document.getElementById("saludo").innerText = u.rol + " · " + u.mail;
+                document.getElementById("saludo").innerText = (u.rol || "Administrador") + " · " + (u.mail || "");
 
+                // Petición al endpoint de Jueces en Spring Boot
                 fetch("http://localhost:8080/api/jueces")
-                    .then(function(res) {
-                        if (!res.ok) {
-                            throw new Error("HTTP Error " + res.status);
-                        }
+                    .then(function (res) {
+                        if (!res.ok) throw new Error("HTTP " + res.status);
                         return res.json();
                     })
-                    .then(function(lista) {
+                    .then(function (lista) {
                         var tbody = document.getElementById("cuerpoTabla");
                         tbody.innerHTML = "";
 
-                        lista.forEach(function(juez) {
+                        if (lista.length === 0) {
+                            tbody.innerHTML = "<tr><td colspan='6'>No hay jueces registrados.</td></tr>";
+                            return;
+                        }
+
+                        lista.forEach(function (juez) {
                             var tr = document.createElement("tr");
                             tr.innerHTML = 
                                 "<td>" + (juez.id || "") + "</td>" +
@@ -74,10 +78,10 @@
                             tbody.appendChild(tr);
                         });
                     })
-                    .catch(function(err) {
-                        console.error(err);
+                    .catch(function (err) {
+                        console.error("Error al cargar jueces:", err);
                         var msgDiv = document.getElementById("mensaje");
-                        msgDiv.innerText = "Error al cargar la lista de jueces (" + err.message + ")";
+                        msgDiv.innerText = "Error al obtener el listado de jueces (" + err.message + ")";
                         msgDiv.style.display = "block";
                     });
             }
