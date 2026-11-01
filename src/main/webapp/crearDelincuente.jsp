@@ -148,7 +148,7 @@
                 </div>
 
                 <button type="submit">Guardar Delincuente</button>
-                <a href="resultados.jsp" class="btn-volver">← Volver al listado</a>
+                <a href="menuDelincuentes.jsp" class="btn-volver">← Volver al menú</a>
             </form>
 
             <div id="mensaje"></div>
@@ -168,7 +168,7 @@
                     claveDelincuente: document.getElementById("claveDelincuente").value,
                     numeroBanda: parseInt(document.getElementById("numeroBanda").value, 10) || 0
                 };
-
+                
                 fetch("http://localhost:8080/api/delincuentes", {
                     method: "POST",
                     headers: {
@@ -193,6 +193,7 @@
                 })
                 .catch(function(err) {
                     var mensajeDiv = document.getElementById("mensaje");
+                    if (res.status === 409) throw new Error("Esa clave o DNI ya está registrada");
                     mensajeDiv.className = "error";
                     mensajeDiv.innerText = "Error al registrar el delincuente (" + err.message + ")";
                     mensajeDiv.style.display = "block";
