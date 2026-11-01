@@ -24,8 +24,8 @@
             <a class="btn" href="menuBandas.jsp">Menú Bandas</a>
             <a class="btn" href="menuSucursales.jsp">Menú Sucursales</a>
             <a class="btn" href="menuInvestigadores.jsp">Menú Investigadores</a>
-            
-            <!-- Pendientes: todavía no hay pantalla en el Front -->
+            <a class="btn" href="menuExpedientes.jsp">Menú Expedientes</a>
+            <!-- Pendiente: todavía no hay pantalla en el Front -->
             <a class="btn deshabilitado" href="#" title="Próximamente">Menú Vigilantes</a>
         </div>
 
