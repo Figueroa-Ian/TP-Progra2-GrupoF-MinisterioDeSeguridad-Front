@@ -7,7 +7,10 @@
         <title>Sistema - Listado de Delincuentes</title>
         <link rel="stylesheet" href="js/estilos.css">
         <style>
-            .menu { max-width: 960px; margin: 40px auto; }
+            .menu {
+                max-width: 960px;
+                margin: 40px auto;
+            }
         </style>
     </head>
     <body>
@@ -28,19 +31,31 @@
         <script src="js/sesion.js"></script>
         <script src="js/vistas.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
-            if (u) {
-                document.getElementById("saludo").innerText = "Administrador · " + u.mail;
+                // 1. Incluimos INVESTIGADOR en los roles autorizados
+                var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
 
-                Vistas.pedir("/delincuentes")
-                    .then(function (lista) {
-                        Vistas.tabla(document.getElementById("resultado"), lista);
-                    })
-                    .catch(function (err) {
-                        console.error(err);
-                        Vistas.mostrarError(Vistas.textoError(err, "No se encontró el listado."));
-                    });
-            }
+                if (u) {
+                    // 2. Saludo dinámico según el rol y mail del usuario
+                    var rolNombre = u.rol ? u.rol.toUpperCase() : "USUARIO";
+                    document.getElementById("saludo").innerText = rolNombre + " · " + u.mail;
+
+                    // 3. Redirección dinámica del botón "Volver" según el rol
+                    var btnVolver = document.querySelector(".volver");
+                    if (btnVolver) {
+                        btnVolver.href = (rolNombre === "INVESTIGADOR") ? "investigador.jsp" : "menuDelincuentes.jsp";
+                    }
+
+                    // Petición de datos al backend
+                    Vistas.pedir("/delincuentes")
+                            .then(function (lista) {
+                                Vistas.tabla(document.getElementById("resultado"), lista);
+                            })
+                            .catch(function (err) {
+                                console.error(err);
+                                Vistas.mostrarError(Vistas.textoError(err, "No se encontró el listado."));
+                            });
+                }
         </script>
+
     </body>
 </html>

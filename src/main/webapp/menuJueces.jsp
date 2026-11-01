@@ -21,23 +21,35 @@
     </head>
     <body>
         <div class="barra">
-            <span id="saludo">Administrador</span>
+            <span id="saludo"></span>
             <a href="#" onclick="Sesion.cerrar(); return false;">Cerrar sesión</a>
         </div>
 
         <div class="menu contenedor">
             <h1>Menú Jueces</h1>
 
-            <a class="btn" href="crearJuez.jsp">+ Registrar Juez</a>
-            <a class="btn" href="buscar">Ver listado de Jueces</a>
-            
-            <a class="volver" href="admin.jsp">← Volver al menú principal</a>
+            <a id="btnCrear" class="btn" href="crearJuez.jsp">+ Registrar Juez</a>
+            <a class="btn" href="listadoJueces.jsp">Ver listado de Jueces</a>
+            <a class="btn" href="buscarJuez.jsp">Buscar Juez por ID</a>
+
+            <a id="btnVolver" class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
 
         <script src="js/sesion.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
-            if (u) document.getElementById("saludo").innerText = "Administrador · " + u.mail;
+            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
+            if (u) {
+                var rol = (u.rol || "").toUpperCase();
+                document.getElementById("saludo").innerText =
+                    rol + " · " + (u.mail || "");
+
+                if (rol === "INVESTIGADOR") {
+                    document.getElementById("btnCrear").style.display = "none";
+                    document.getElementById("btnVolver").href = "investigador.jsp";
+                } else {
+                    document.getElementById("btnVolver").href = "admin.jsp";
+                }
+            }
         </script>
     </body>
 </html>
