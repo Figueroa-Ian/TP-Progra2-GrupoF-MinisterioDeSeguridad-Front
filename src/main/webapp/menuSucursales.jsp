@@ -28,17 +28,17 @@
         <div class="menu contenedor">
             <h1>Menú Sucursales</h1>
 
-            <!-- Pendiente: pantalla de registro (falta la entidad Sucursal) -->
-            <a class="btn deshabilitado" href="#" title="Próximamente">+ Registrar Sucursal</a>
+            <!-- Pendiente: pantalla de modif -->
+            <a class="btn" href="crearSucursal.jsp">+ Registrar Sucursal</a>
             <a class="btn" href="listadoSucursales.jsp">Ver Listado Sucursales</a>
             <a class="btn" href="buscarSucursal.jsp">Buscar por Id</a>
-
+            
             <a class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
 
         <script src="js/sesion.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
+            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
             if (u) document.getElementById("saludo").innerText = "Administrador · " + u.mail;
         </script>
     </body>
