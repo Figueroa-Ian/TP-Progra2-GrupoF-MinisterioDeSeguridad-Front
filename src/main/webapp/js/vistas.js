@@ -30,7 +30,10 @@ var Vistas = (function () {
         ilicito: "Ilícito",
         tipoJuridico: "Tipo jurídico",
         tipoAccion: "Tipo de acción",
-        tipoIntencion: "Tipo de intención"
+        tipoIntencion: "Tipo de intención",
+        legajo: "Legajo",
+        edad: "Edad",
+        disponibleTrabajar: "Disponible para trabajar"
     };
 
     // Estilos de tabla, ficha, buscador y "volver" (se inyectan una sola vez)

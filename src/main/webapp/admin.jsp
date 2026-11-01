@@ -26,8 +26,7 @@
             <a class="btn" href="menuInvestigadores.jsp">Menú Investigadores</a>
             <a class="btn" href="menuExpedientes.jsp">Menú Expedientes</a>
 
-            <!-- Pendiente: todavía no hay pantalla en el Front -->
-            <a class="btn deshabilitado" href="#" title="Próximamente">Menú Vigilantes</a>
+            <a class="btn" href="menuVigilantes.jsp">Menú Vigilantes</a>
         </div>
 
         <script src="js/sesion.js"></script>
