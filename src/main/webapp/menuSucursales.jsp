@@ -29,7 +29,7 @@
             <h1>Menú Sucursales</h1>
 
             <!-- Pendiente: pantalla de registro (falta la entidad Sucursal) -->
-            <a class="btn deshabilitado" href="#" title="Próximamente">+ Registrar Sucursal</a>
+            <a class="btn" href="crearSucursal.jsp">+ Registrar Sucursal</a>
             <a class="btn" href="listadoSucursales.jsp">Ver Listado Sucursales</a>
             <a class="btn" href="buscarSucursal.jsp">Buscar por Id</a>
 
