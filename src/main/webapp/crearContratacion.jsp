@@ -131,7 +131,7 @@
                 </div>
 
                 <button type="submit">Guardar Contratación</button>
-                <a href="admin.jsp" class="btn-volver">← Volver al menú principal</a>
+                <a href="menuContrataciones.jsp" class="btn-volver">← Volver al menú</a>
             </form>
 
             <div id="mensaje"></div>

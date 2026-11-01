@@ -28,9 +28,12 @@
         <div class="menu contenedor">
             <h1>Menú Contrataciones</h1>
 
-            <a class="btn" href="crearContrataciones.jsp">+ Registrar Contratación</a>
+            <a class="btn" href="crearContratacion.jsp">+ Registrar Contratación</a>
             <a class="btn" href="listadoContrataciones.jsp">Ver Listado Contrataciones</a>
-
+            <a class="btn" href="buscarContratacion.jsp">Buscar por Id</a>
+            <a class="btn" href="modificarContratacion.jsp">Modificar Contratacion</a>
+            <a class="btn" href="eliminarContratacion.jsp">Eliminar Contratacion</a>
+            
             <a class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
 

@@ -32,6 +32,8 @@
             <a class="btn" href="crearSucursal.jsp">+ Registrar Sucursal</a>
             <a class="btn" href="listadoSucursales.jsp">Ver Listado Sucursales</a>
             <a class="btn" href="buscarSucursal.jsp">Buscar por Id</a>
+            <a class="btn" href="modificarSucursal.jsp">Modificar Sucursal</a>
+            <a class="btn" href="eliminarSucursal.jsp">Eliminar Sucursal</a>
             
             <a class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>

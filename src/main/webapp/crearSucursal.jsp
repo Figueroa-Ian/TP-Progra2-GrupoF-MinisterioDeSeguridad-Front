@@ -130,7 +130,7 @@
                 </div>
 
                 <button type="submit">Guardar Sucursal</button>
-                <a href="resultados.jsp" class="btn-volver">← Volver al listado</a>
+                <a href="menuSucursales.jsp" class="btn-volver">← Volver al menú</a>
             </form>
 
             <div id="mensaje"></div>
