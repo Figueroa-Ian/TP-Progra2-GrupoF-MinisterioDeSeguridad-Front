@@ -28,11 +28,11 @@
         <div class="menu contenedor">
             <h1>Menú Investigadores</h1>
 
-            <!-- ID btnCrear para ocultar si es Investigador -->
-            <a id="btnCrear" class="btn deshabilitado" href="#" title="Próximamente">+ Registrar Investigador</a>
-
-            <!-- Enlace habilitado al nuevo listado -->
-            <a class="btn" href="listadoInvestigadores.jsp">Ver Listado Investigadores</a>
+            <a id="btnCrear" class="btn" href="crearInvestigador.jsp">+ Registrar Investigador</a>
+            <a class="btn" href="listadoInvestigadores.jsp">Ver listado de Investigadores</a>
+            <a class="btn" href="buscarInvestigador.jsp">Buscar Investigador por ID</a>
+            <a id="btnModificar" class="btn" href="modificarInvestigador.jsp">Modificar Investigador</a>
+            <a id="btnEliminar" class="btn" href="eliminarInvestigador.jsp">Eliminar Investigador</a>
             <!-- ID btnVolver para redirigir según el rol -->
             <a id="btnVolver" class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
@@ -49,6 +49,8 @@
                 // 2. Si entra un Investigador, ocultamos el botón de crear y ajustamos el retorno
                 if (rol === "INVESTIGADOR") {
                     document.getElementById("btnCrear").style.display = "none";
+                    document.getElementById("btnModificar").style.display = "none";
+                    document.getElementById("btnEliminar").style.display = "none";
                     document.getElementById("btnVolver").href = "investigador.jsp";
                 } else {
                     document.getElementById("btnVolver").href = "admin.jsp";
@@ -56,4 +58,4 @@
             }
         </script>
     </body>
-</html>
+</html>

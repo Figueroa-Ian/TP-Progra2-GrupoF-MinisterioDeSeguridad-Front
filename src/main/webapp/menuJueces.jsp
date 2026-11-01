@@ -31,6 +31,7 @@
             <a id="btnCrear" class="btn" href="crearJuez.jsp">+ Registrar Juez</a>
             <a class="btn" href="listadoJueces.jsp">Ver listado de Jueces</a>
             <a class="btn" href="buscarJuez.jsp">Buscar Juez por ID</a>
+            <a id="btnEliminar" class="btn" href="eliminarJuez.jsp">Eliminar Juez</a>
 
             <a id="btnVolver" class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
@@ -45,6 +46,7 @@
 
                 if (rol === "INVESTIGADOR") {
                     document.getElementById("btnCrear").style.display = "none";
+                    document.getElementById("btnEliminar").style.display = "none";
                     document.getElementById("btnVolver").href = "investigador.jsp";
                 } else {
                     document.getElementById("btnVolver").href = "admin.jsp";

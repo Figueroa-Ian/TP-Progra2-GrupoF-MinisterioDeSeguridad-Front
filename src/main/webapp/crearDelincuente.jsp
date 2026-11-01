@@ -177,11 +177,20 @@
                     body: JSON.stringify(nuevoDelincuente)
                 })
                 .then(function(res) {
-                    if (res.status === 201 || res.ok) {
+                    if (res.ok) {
                         return res.json();
-                    } else {
-                        throw new Error("HTTP " + res.status);
                     }
+                    // Se lee el mensaje que manda el servidor (edad, DNI repetido, etc.)
+                    return res.text().then(function(texto) {
+                        var detalle = "";
+                        try { detalle = JSON.parse(texto).message || ""; } catch (e) { /* sin cuerpo JSON */ }
+                        var err = new Error("HTTP " + res.status);
+                        err.estado = res.status;
+                        err.detalle = detalle;
+                        throw err;
+                    });
+                }, function() {
+                    throw new Error("RED");   // solo acá es un problema de conexión
                 })
                 .then(function(data) {
                     var mensajeDiv = document.getElementById("mensaje");
@@ -193,9 +202,13 @@
                 })
                 .catch(function(err) {
                     var mensajeDiv = document.getElementById("mensaje");
-                    if (res.status === 409) throw new Error("Esa clave o DNI ya está registrada");
+                    var texto;
+                    if (err.message === "RED") texto = "No se pudo conectar con el servidor.";
+                    else if (err.detalle) texto = err.detalle;
+                    else if (err.estado === 409) texto = "Esa clave o DNI ya está registrada.";
+                    else texto = "Error al registrar el delincuente (" + err.message + ")";
                     mensajeDiv.className = "error";
-                    mensajeDiv.innerText = "Error al registrar el delincuente (" + err.message + ")";
+                    mensajeDiv.innerText = texto;
                     mensajeDiv.style.display = "block";
                 });
             }

@@ -33,6 +33,7 @@
 
             <a class="btn" href="listadoDelincuentes.jsp">Ver Listado Delincuentes</a>
             <a class="btn" href="buscarDelincuente.jsp">Buscar por Id</a>
+            <a id="btnEliminar" class="btn" href="eliminarDelincuente.jsp">Eliminar Delincuente</a>
 
             <a id="btnVolver" class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
@@ -49,6 +50,7 @@
                 // 2. Si el rol es INVESTIGADOR, ocultamos la opción de registro
                 if (rol === "INVESTIGADOR") {
                     document.getElementById("btnCrear").style.display = "none";
+                    document.getElementById("btnEliminar").style.display = "none";
                     document.getElementById("btnVolver").href = "investigador.jsp";
                 } else {
                     document.getElementById("btnVolver").href = "admin.jsp";
