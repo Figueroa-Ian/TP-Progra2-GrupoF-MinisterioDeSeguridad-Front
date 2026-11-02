@@ -52,7 +52,7 @@
                 document.getElementById("saludo").innerText = (u.rol || "Administrador") + " · " + (u.mail || "");
 
                 // Petición al endpoint de Jueces en Spring Boot
-                fetch("http://localhost:8080/api/jueces")
+                fetch(API_URL + "/jueces")
                     .then(function (res) {
                         if (!res.ok) throw new Error("HTTP " + res.status);
                         return res.json();
@@ -87,4 +87,4 @@
             }
         </script>
     </body>
-</html>
+</html>

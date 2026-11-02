@@ -28,19 +28,31 @@
         <div class="menu contenedor">
             <h1>Menú Contrataciones</h1>
 
-            <a class="btn" href="crearContratacion.jsp">+ Registrar Contratación</a>
+            <a id="btnCrear" class="btn" href="crearContratacion.jsp">+ Registrar Contratación</a>
             <a class="btn" href="listadoContrataciones.jsp">Ver Listado Contrataciones</a>
             <a class="btn" href="buscarContratacion.jsp">Buscar por Id</a>
-            <a class="btn" href="modificarContratacion.jsp">Modificar Contratacion</a>
-            <a class="btn" href="eliminarContratacion.jsp">Eliminar Contratacion</a>
+            <a id="btnModificar" class="btn" href="modificarContratacion.jsp">Modificar Contratacion</a>
+            <a id="btnEliminar" class="btn" href="eliminarContratacion.jsp">Eliminar Contratacion</a>
             
-            <a class="volver" href="admin.jsp">← Volver al menú principal</a>
+            <a id="btnVolver" class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
 
         <script src="js/sesion.js"></script>
         <script>
             var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
-            if (u) document.getElementById("saludo").innerText = "Administrador · " + u.mail;
+            if (u) {
+                var rol = (u.rol || "").toUpperCase();
+                document.getElementById("saludo").innerText = rol + " · " + u.mail;
+
+                // El investigador solo consulta: se ocultan alta, modificación y baja
+                if (rol === "INVESTIGADOR") {
+                    ["btnCrear", "btnModificar", "btnEliminar"].forEach(function (id) {
+                        var el = document.getElementById(id);
+                        if (el) el.style.display = "none";
+                    });
+                    document.getElementById("btnVolver").href = "investigador.jsp";
+                }
+            }
         </script>
     </body>
 </html>

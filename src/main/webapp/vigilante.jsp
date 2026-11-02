@@ -110,8 +110,8 @@
                 mostrarFicha(u);
 
                 // ...y se completa con los datos completos del vigilante desde el backend
-                if (u.id !== undefined && u.id !== null) {
-                    fetch(API_URL + "/vigilantes/" + u.id)
+                if (u.personaId !== undefined && u.personaId !== null) {
+                    fetch(API_URL + "/vigilantes/" + u.personaId)
                         .then(function (res) {
                             if (!res.ok) throw new Error("HTTP " + res.status);
                             return res.json();

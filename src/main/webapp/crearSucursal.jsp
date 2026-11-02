@@ -136,7 +136,9 @@
             <div id="mensaje"></div>
         </div>
 
+        <script src="js/sesion.js"></script>
         <script>
+            Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
             function guardarSucursal(event) {
                 event.preventDefault();
 
@@ -147,7 +149,7 @@
                     es_central: document.getElementById("es_central").checked
                 };
 
-                fetch("http://localhost:8080/api/sucursales", {
+                fetch(API_URL + "/sucursales", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -178,4 +180,4 @@
             }
         </script>
     </body>
-</html>
+</html>

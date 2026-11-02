@@ -27,7 +27,7 @@
 
         <div class="menu contenedor">
             <h1>Menú Bandas</h1>
-            <a class="btn" href="crearBanda.jsp">+ Registrar Banda</a>
+            <a id="btnCrear" class="btn" href="crearBanda.jsp">+ Registrar Banda</a>
             <a class="btn" href="listadoBandas.jsp">Ver Listado Bandas</a>
             <a class="btn" href="buscarBanda.jsp">Buscar por Id</a>
             <a class="btn" href="delincuentesDeBanda.jsp">Ver delincuentes de banda</a>
@@ -51,4 +51,4 @@
             }
         </script>
     </body>
-</html>
+</html>

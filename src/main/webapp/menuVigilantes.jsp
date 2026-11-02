@@ -21,19 +21,31 @@
         <div class="menu contenedor">
             <h1>Menú Vigilantes</h1>
 
-            <a class="btn" href="crearVigilante.jsp">+ Registrar Vigilante</a>
+            <a id="btnCrear" class="btn" href="crearVigilante.jsp">+ Registrar Vigilante</a>
             <a class="btn" href="listadoVigilantes.jsp">Ver Listado de Vigilantes</a>
             <a class="btn" href="buscarVigilante.jsp">Buscar por Id</a>
-            <a class="btn" href="modificarVigilante.jsp">Modificar Vigilante</a>
-            <a class="btn" href="eliminarVigilante.jsp">Eliminar Vigilante</a>
+            <a id="btnModificar" class="btn" href="modificarVigilante.jsp">Modificar Vigilante</a>
+            <a id="btnEliminar" class="btn" href="eliminarVigilante.jsp">Eliminar Vigilante</a>
 
-            <a class="volver" href="admin.jsp">← Volver al menú principal</a>
+            <a id="btnVolver" class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
 
         <script src="js/sesion.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
-            if (u) document.getElementById("saludo").innerText = "Administrador · " + u.mail;
+            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
+            if (u) {
+                var rol = (u.rol || "").toUpperCase();
+                document.getElementById("saludo").innerText = rol + " · " + u.mail;
+
+                // El investigador solo consulta: se ocultan alta, modificación y baja
+                if (rol === "INVESTIGADOR") {
+                    ["btnCrear", "btnModificar", "btnEliminar"].forEach(function (id) {
+                        var el = document.getElementById(id);
+                        if (el) el.style.display = "none";
+                    });
+                    document.getElementById("btnVolver").href = "investigador.jsp";
+                }
+            }
         </script>
     </body>
 </html>

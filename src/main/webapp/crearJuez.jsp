@@ -154,7 +154,9 @@
             <div id="mensaje"></div>
         </div>
 
+        <script src="js/sesion.js"></script>
         <script>
+            Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
             function guardarJuez(event) {
                 event.preventDefault();
 
@@ -169,7 +171,7 @@
                     antiguedadServicio: parseInt(document.getElementById("antiguedadServicio").value, 10) || 0
                 };
 
-                fetch("http://localhost:8080/api/jueces", {
+                fetch(API_URL + "/jueces", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -214,4 +216,4 @@
             }
         </script>
     </body>
-</html>
+</html>

@@ -32,8 +32,8 @@
             <a id="btnCrear" class="btn" href="crearSucursal.jsp">+ Registrar Sucursal</a>
             <a class="btn" href="listadoSucursales.jsp">Ver Listado Sucursales</a>
             <a class="btn" href="buscarSucursal.jsp">Buscar por Id</a>
-            <a class="btn" href="modificarSucursal.jsp">Modificar Sucursal</a>
-            <a class="btn" href="eliminarSucursal.jsp">Eliminar Sucursal</a>
+            <a id="btnModificar" class="btn" href="modificarSucursal.jsp">Modificar Sucursal</a>
+            <a id="btnEliminar" class="btn" href="eliminarSucursal.jsp">Eliminar Sucursal</a>
             
             <!-- ID btnVolver asignado para redirigir dinámicamente -->
             <a id="btnVolver" class="volver" href="admin.jsp">← Volver al menú principal</a>
@@ -42,16 +42,17 @@
         <script src="js/sesion.js"></script>
         <script>
             var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
-
             if (u) {
                 var rol = (u.rol || "").toUpperCase();
                 document.getElementById("saludo").innerText = rol + " · " + u.mail;
 
+                // El investigador solo consulta: se ocultan alta, modificación y baja
                 if (rol === "INVESTIGADOR") {
-                    document.getElementById("btnCrear").style.display = "none";
+                    ["btnCrear", "btnModificar", "btnEliminar"].forEach(function (id) {
+                        var el = document.getElementById(id);
+                        if (el) el.style.display = "none";
+                    });
                     document.getElementById("btnVolver").href = "investigador.jsp";
-                } else {
-                    document.getElementById("btnVolver").href = "admin.jsp";
                 }
             }
         </script>

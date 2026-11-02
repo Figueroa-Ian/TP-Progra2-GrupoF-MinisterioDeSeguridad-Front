@@ -154,7 +154,9 @@
             <div id="mensaje"></div>
         </div>
 
+        <script src="js/sesion.js"></script>
         <script>
+            Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
             function guardarDelincuente(event) {
                 event.preventDefault();
 
@@ -169,7 +171,7 @@
                     numeroBanda: parseInt(document.getElementById("numeroBanda").value, 10) || 0
                 };
                 
-                fetch("http://localhost:8080/api/delincuentes", {
+                fetch(API_URL + "/delincuentes", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -214,4 +216,4 @@
             }
         </script>
     </body>
-</html>
+</html>

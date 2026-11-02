@@ -137,7 +137,9 @@
             <div id="mensaje"></div>
         </div>
 
+        <script src="js/sesion.js"></script>
         <script>
+            Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
             function guardarContratacion(event) {
                 event.preventDefault();
 
@@ -150,7 +152,7 @@
                     observaciones: document.getElementById("observaciones").value
                 };
 
-                fetch("http://localhost:8080/api/contrataciones", {
+                fetch(API_URL + "/contrataciones", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -181,4 +183,4 @@
             }
         </script>
     </body>
-</html>
+</html>

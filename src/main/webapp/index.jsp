@@ -50,33 +50,49 @@
                 document.getElementById("mensaje").style.display = "none";
                 btn.disabled = true;
 
-                fetch(API_URL + "/auth/login", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        mail: document.getElementById("mail").value.trim(),
-                        contrasenia: document.getElementById("contrasenia").value
+                var mail = document.getElementById("mail").value.trim();
+                var contrasenia = document.getElementById("contrasenia").value;
+
+                // 1) token CSRF  2) login  3) token CSRF nuevo (el login crea una sesión nueva)
+                Sesion.cargarCsrf()
+                    .then(function () {
+                        return fetch(API_URL + "/auth/login", {
+                            method: "POST",
+                            body: new URLSearchParams({ mail: mail, contrasenia: contrasenia })
+                        });
                     })
-                })
-                .then(function (res) {
-                    if (res.status === 401 || res.status === 404) throw new Error("CREDENCIALES");
-                    if (!res.ok) throw new Error("HTTP " + res.status);
-                    return res.json();
-                })
-                .then(function (usuario) {
-                    Sesion.guardar(usuario);
-                    window.location.href = Sesion.destino(usuario.rol);
-                })
-                .catch(function (err) {
-                    btn.disabled = false;
-                    if (err.message === "CREDENCIALES") {
-                        mostrarError("Usuario o contraseña incorrectos.");
-                    } else if (err instanceof TypeError) {
-                        mostrarError("No se pudo conectar con el servidor.");
-                    } else {
-                        mostrarError("Error al iniciar sesión (" + err.message + ").");
-                    }
-                });
+                    .then(function (res) {
+                        if (res.status === 401) throw new Error("CREDENCIALES");
+                        if (res.status === 429) {
+                            return res.json().then(function (d) {
+                                var e = new Error("BLOQUEADO");
+                                e.detalle = d && d.message;
+                                throw e;
+                            });
+                        }
+                        if (!res.ok) throw new Error("HTTP " + res.status);
+                        return res.json();
+                    })
+                    .then(function (usuario) {
+                        Sesion.guardar(usuario);
+                        return Sesion.cargarCsrf().then(function () { return usuario; });
+                    })
+                    .then(function (usuario) {
+                        window.location.href = Sesion.destino(usuario.rol);
+                    })
+                    .catch(function (err) {
+                        btn.disabled = false;
+                        if (err.message === "CREDENCIALES") {
+                            mostrarError("Usuario o contraseña incorrectos.");
+                        } else if (err.message === "BLOQUEADO") {
+                            mostrarError(err.detalle || "Demasiados intentos fallidos. Probá más tarde.");
+                        } else if (err instanceof TypeError) {
+                            mostrarError("No se pudo conectar con el servidor. Si es la primera vez, abrí "
+                                + API_URL + "/auth/csrf en el navegador y aceptá el certificado de seguridad.");
+                        } else {
+                            mostrarError("Error al iniciar sesión (" + err.message + ").");
+                        }
+                    });
             }
         </script>
     </body>

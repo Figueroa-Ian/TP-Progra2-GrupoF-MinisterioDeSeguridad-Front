@@ -25,8 +25,7 @@
             <a class="btn" href="menuSucursales.jsp">Consultar Sucursales</a>
             <a class="btn" href="menuInvestigadores.jsp">Consultar Investigadores</a>
             
-            <!-- Opción deshabilitada igual que en Admin -->
-            <a class="btn deshabilitado" href="#" title="Próximamente">Consultar Vigilantes</a>
+            <a class="btn" href="menuVigilantes.jsp">Consultar Vigilantes</a>
         </div>
 
         <script src="js/sesion.js"></script>
@@ -39,4 +38,4 @@
             }
         </script>
     </body>
-</html>
+</html>
