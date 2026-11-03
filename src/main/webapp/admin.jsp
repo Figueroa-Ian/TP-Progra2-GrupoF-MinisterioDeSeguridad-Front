@@ -27,6 +27,7 @@
             <a class="btn" href="menuExpedientes.jsp">Menú Expedientes</a>
             <a class="btn" href="menuVigilantes.jsp">Menú Vigilantes</a>
             <a class="btn" href="menuContrataciones.jsp">Menú Contrataciones</a>
+            <a class="btn" href="menuDelitos.jsp">Menú Delitos</a>
         </div>
 
         <script src="js/sesion.js"></script>

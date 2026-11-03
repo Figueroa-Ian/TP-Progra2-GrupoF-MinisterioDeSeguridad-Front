@@ -51,7 +51,7 @@
 
         <script src="js/sesion.js"></script>
         <script>
-            var usuario = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
+            var usuario = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
 
             if (usuario) {
                 var rolUsuario = (usuario.rol || "").toUpperCase();

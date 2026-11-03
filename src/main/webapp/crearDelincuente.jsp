@@ -132,6 +132,7 @@
                 <div class="campo">
                     <label for="fechaNacimiento">Fecha de Nacimiento:</label>
                     <input type="date" id="fechaNacimiento" required>
+                    <small style="color:#6c757d">Tiene que ser mayor de 14 años.</small>
                 </div>
 
                 <!-- Datos propios de Delincuente -->
@@ -157,6 +158,15 @@
         <script src="js/sesion.js"></script>
         <script>
             Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
+
+            // Fecha más reciente permitida: hoy menos 14 años (los delincuentes pueden registrarse desde los 14)
+            (function () {
+                var h = new Date();
+                var m = String(h.getMonth() + 1).padStart(2, "0");
+                var d = String(h.getDate()).padStart(2, "0");
+                document.getElementById("fechaNacimiento").max = (h.getFullYear() - 14) + "-" + m + "-" + d;
+            })();
+
             function guardarDelincuente(event) {
                 event.preventDefault();
 
@@ -216,4 +226,4 @@
             }
         </script>
     </body>
-</html>
+</html>

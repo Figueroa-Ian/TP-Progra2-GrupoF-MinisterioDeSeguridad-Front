@@ -27,7 +27,7 @@
 
             <div id="zonaForm">
                 <p id="titulo" style="font-weight:bold"></p>
-                <p style="font-size:12px;color:#6c757d;margin-top:0">Acá se modifican el legajo, la edad y la disponibilidad.</p>
+                <p style="font-size:12px;color:#6c757d;margin-top:0">Acá se modifican el legajo y la disponibilidad.</p>
                 <div id="contenedorForm"></div>
             </div>
 

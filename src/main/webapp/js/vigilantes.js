@@ -43,12 +43,11 @@ var Vigilantes = (function () {
     var DATOS = ""
         + '<div class="seccion"@@MARGEN@@>Datos del vigilante</div>'
         + '<div class="campo"><label for="legajo">Legajo:</label><input type="text" id="legajo" required maxlength="20" placeholder="Ej: VIG-06"></div>'
-        + '<div class="campo"><label for="edad">Edad:</label><input type="number" id="edad" min="1" required placeholder="Ej: 30"></div>'
         + '<div class="check"><input type="checkbox" id="disponibleTrabajar"><label for="disponibleTrabajar">Disponible para trabajar</label></div>';
 
     // Dibuja el formulario en #idContenedor.
     //   conPersona = true  -> también pide DNI, nombre, etc. (alta)
-    //   conPersona = false -> solo legajo, edad y disponibilidad (modificación)
+    //   conPersona = false -> solo legajo y disponibilidad (modificación)
     function montar(idContenedor, conPersona, textoBoton, onGuardar) {
         $(idContenedor).innerHTML = '<form id="formVigilante" class="vig-form">'
             + (conPersona ? PERSONA : "")
@@ -63,7 +62,6 @@ var Vigilantes = (function () {
     function leer(conPersona) {
         var v = {
             legajo: $("legajo").value.trim(),
-            edad: parseInt($("edad").value, 10) || 0,
             disponibleTrabajar: $("disponibleTrabajar").checked
         };
         if (conPersona) {
@@ -79,7 +77,6 @@ var Vigilantes = (function () {
 
     function llenar(v) {
         $("legajo").value = v.legajo || "";
-        $("edad").value = v.edad === null || v.edad === undefined ? "" : v.edad;
         $("disponibleTrabajar").checked = !!v.disponibleTrabajar;
     }
 

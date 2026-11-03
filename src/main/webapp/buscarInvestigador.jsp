@@ -34,7 +34,7 @@
         <script src="js/sesion.js"></script>
         <script src="js/vistas.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
+            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
             if (u) {
                 var rol = (u.rol || "ADMINISTRADOR").toUpperCase();
                 document.getElementById("saludo").innerText = rol + " · " + (u.mail || "");

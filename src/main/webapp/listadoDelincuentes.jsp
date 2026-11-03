@@ -32,7 +32,7 @@
         <script src="js/vistas.js"></script>
         <script>
                 // 1. Incluimos INVESTIGADOR en los roles autorizados
-                var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
+                var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
 
                 if (u) {
                     // 2. Saludo dinámico según el rol y mail del usuario

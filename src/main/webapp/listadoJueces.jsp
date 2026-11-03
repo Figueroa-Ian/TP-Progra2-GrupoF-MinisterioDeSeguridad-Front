@@ -47,7 +47,7 @@
 
         <script src="js/sesion.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
+            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
             if (u) {
                 document.getElementById("saludo").innerText = (u.rol || "Administrador") + " · " + (u.mail || "");
 
@@ -87,4 +87,4 @@
             }
         </script>
     </body>
-</html>
+</html>

@@ -32,7 +32,7 @@
 
         <script src="js/sesion.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR"]);
+            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "CHUSMA"]);
             if (u) document.getElementById("saludo").innerText = "Administrador · " + u.mail;
         </script>
     </body>

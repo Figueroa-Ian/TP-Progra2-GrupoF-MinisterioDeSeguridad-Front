@@ -24,6 +24,7 @@
             <a class="btn" href="menuBandas.jsp">Consultar Bandas</a>
             <a class="btn" href="menuSucursales.jsp">Consultar Sucursales</a>
             <a class="btn" href="menuInvestigadores.jsp">Consultar Investigadores</a>
+            <a class="btn" href="menuDelitos.jsp">Consultar Delitos</a>
             
             <a class="btn" href="menuVigilantes.jsp">Consultar Vigilantes</a>
         </div>
@@ -38,4 +39,4 @@
             }
         </script>
     </body>
-</html>
+</html>

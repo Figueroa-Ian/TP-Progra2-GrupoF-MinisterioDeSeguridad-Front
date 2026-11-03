@@ -40,7 +40,7 @@
         <script src="js/sesion.js"></script>
         <script>
             // 1. Permitimos acceso a Admin e Investigador
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
+            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
             
             if (u) {
                 var rol = (u.rol || "").toUpperCase();
@@ -58,4 +58,4 @@
             }
         </script>
     </body>
-</html>
+</html>

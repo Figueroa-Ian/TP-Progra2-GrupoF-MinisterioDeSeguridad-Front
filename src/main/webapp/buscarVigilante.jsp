@@ -34,7 +34,7 @@
         <script src="js/vistas.js"></script>
         <script src="js/vigilantes.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR"]);
+            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
             if (u) document.getElementById("saludo").innerText = "Administrador · " + u.mail;
 
             function buscar(event) {
