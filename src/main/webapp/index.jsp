@@ -54,7 +54,8 @@
                 var contrasenia = document.getElementById("contrasenia").value;
 
                 // 1) token CSRF  2) login  3) token CSRF nuevo (el login crea una sesión nueva)
-                Sesion.cargarCsrf()
+                // Sesion.cargarCsrf()   // CSRF desactivado temporalmente
+                Promise.resolve()
                     .then(function () {
                         return fetch(API_URL + "/auth/login", {
                             method: "POST",
@@ -75,7 +76,8 @@
                     })
                     .then(function (usuario) {
                         Sesion.guardar(usuario);
-                        return Sesion.cargarCsrf().then(function () { return usuario; });
+                        // return Sesion.cargarCsrf().then(function () { return usuario; });   // CSRF desactivado temporalmente
+                        return usuario;
                     })
                     .then(function (usuario) {
                         window.location.href = Sesion.destino(usuario.rol);
