@@ -43,3 +43,8 @@ src/main/webapp/
     ├── sesion.js              # Manejo de token, sesión y RBAC en cliente
     ├── vistas.js              # Helpers de renderizado de tablas y DOM
     └── <modulo>.js            # Lógica y llamadas Fetch específicas por entidad
+
+## 👥 Equipo de Desarrollo (Grupo F)
+* Figueroa Milagros
+* Figueroa Ian
+* Fernandez Mayra
