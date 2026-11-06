@@ -28,6 +28,11 @@ El front-end está dividido en módulos independientes accesibles desde el panel
 * **Contrataciones:** Interfaz transaccional para asignar vigilantes a sucursales en fechas específicas, indicando si portan armas.
 * **Expedientes e Ilícitos:** Flujo de creación conjunta donde se asocia un expediente judicial con su respectivo ilícito (tipificación, juez a cargo, sucursal afectada y delincuentes involucrados).
 
+## 👥 Equipo de Desarrollo (Grupo F)
+* Figueroa Milagros
+* Figueroa Ian
+* Fernandez Mayra
+  
 ## 📂 Estructura del Proyecto
 
 El cliente está estructurado de manera modular para facilitar el mantenimiento:
@@ -44,7 +49,3 @@ src/main/webapp/
     ├── vistas.js              # Helpers de renderizado de tablas y DOM
     └── <modulo>.js            # Lógica y llamadas Fetch específicas por entidad
 
-## 👥 Equipo de Desarrollo (Grupo F)
-* Figueroa Milagros
-* Figueroa Ian
-* Fernandez Mayra
