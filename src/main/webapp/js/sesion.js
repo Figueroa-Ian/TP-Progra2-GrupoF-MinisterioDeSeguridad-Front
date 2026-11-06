@@ -1,8 +1,8 @@
 /* Manejo de sesión en el navegador.
  La sesión REAL vive en el back (cookie de sesión HTTPS + Spring Security); acá solo se guarda
  lo necesario para mostrar la interfaz. Los permisos de verdad los valida siempre el back. */
-var API_URL = "http://localhost:8080/api";
-//var API_URL = "http://10.96.49.75:8080/api";   // <-- IP de la maquina del backend
+//var API_URL = "http://localhost:8080/api";
+var API_URL = "http://10.96.49.75:8080/api";   // <-- IP de la maquina del backend
 
 // Todas las llamadas a la API van con la cookie de sesión y, si modifican datos, con el token CSRF.
 // Así no hace falta tocar cada fetch de cada página.

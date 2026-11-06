@@ -31,22 +31,20 @@ var Expedientes = (function () {
         eliminar: function (id) { return "/expedientes/eliminar/" + encodeURIComponent(id); }
     };
 
-    var catalogos = null;   // { juridicos: [...], acciones: [...], intenciones: [...] }
+    var catalogos = null;   // { delitos: [...] }
 
     function cargarCatalogos() {
         if (catalogos) return Promise.resolve(catalogos);
-        return Promise.all([
-            Vistas.pedir("/catalogos/tipos-juridicos"),
-            Vistas.pedir("/catalogos/tipos-accion"),
-            Vistas.pedir("/catalogos/tipos-intencion")
-        ]).then(function (r) {
-            catalogos = { juridicos: r[0], acciones: r[1], intenciones: r[2] };
+        return Vistas.pedir("/delitos").then(function (delitos) {
+            catalogos = { delitos: delitos };
             return catalogos;
         });
     }
 
-    function nombreDe(lista, id) {
-        for (var i = 0; i < lista.length; i++) if (lista[i].id === id) return lista[i].nombre;
+    function descripcionDelito(id) {
+        for (var i = 0; i < catalogos.delitos.length; i++) {
+            if (catalogos.delitos[i].id === id) return catalogos.delitos[i].descripcion;
+        }
         return id === null || id === undefined ? null : "#" + id;
     }
 
@@ -67,11 +65,8 @@ var Expedientes = (function () {
             condenaVigente: e.condenaVigente,
             ilicito: {
                 id: il.id,
-                descripcion: il.descripcion,
+                delito: descripcionDelito(il.idDelito),
                 anosCondena: il.anosCondena,
-                tipoJuridico: nombreDe(catalogos.juridicos, il.idTipoJuridico),
-                tipoAccion: nombreDe(catalogos.acciones, il.idTipoAccion),
-                tipoIntencion: nombreDe(catalogos.intenciones, il.idTipoIntencion)
             }
         };
     }
@@ -88,11 +83,8 @@ var Expedientes = (function () {
         + '  <div class="campo"><label for="clavesDelincuentes">Delincuentes (uno o varios):</label><div id="selDelincuentes"></div></div>'
         + '  <div class="campo"><label for="descripcionExp">Descripción del expediente:</label><textarea id="descripcionExp" rows="3" placeholder="Opcional"></textarea></div>'
         + '  <div class="seccion">Ilícito</div>'
-        + '  <div class="campo"><label for="descripcionIl">Descripción del ilícito:</label><textarea id="descripcionIl" rows="2" required placeholder="Ej: Robo agravado"></textarea></div>'
+        + '  <div class="campo"><label for="idDelito">Delito:</label><select id="idDelito" required></select></div>'
         + '  <div class="campo"><label for="anosIl">Años de condena que prevé el ilícito:</label><input type="number" id="anosIl" min="0" required placeholder="Ej: 5"></div>'
-        + '  <div class="campo"><label for="tipoJuridico">Tipo jurídico:</label><select id="tipoJuridico" required></select></div>'
-        + '  <div class="campo"><label for="tipoAccion">Tipo de acción:</label><select id="tipoAccion" required></select></div>'
-        + '  <div class="campo"><label for="tipoIntencion">Tipo de intención:</label><select id="tipoIntencion" required></select></div>'
         + '  <div class="seccion">Resultado judicial</div>'
         + '  <div class="check"><input type="checkbox" id="esCulpable"><label for="esCulpable">Es culpable</label></div>'
         + '  <div class="check"><input type="checkbox" id="tieneCondena"><label for="tieneCondena">Tiene condena</label></div>'
@@ -115,6 +107,20 @@ var Expedientes = (function () {
             o.value = t.id;
             o.textContent = t.nombre + (t.descripcion ? " — " + t.descripcion : "");
             sel.appendChild(o);
+        });
+    }
+
+    function llenarSelectDelitos(sel, lista) {
+        sel.innerHTML = "";
+        var vacio = document.createElement("option");
+        vacio.value = "";
+        vacio.textContent = "— Elegí un delito —";
+        sel.appendChild(vacio);
+        lista.forEach(function (d) {
+            var opcion = document.createElement("option");
+            opcion.value = d.id;
+            opcion.textContent = d.descripcion;
+            sel.appendChild(opcion);
         });
     }
 
@@ -164,9 +170,7 @@ var Expedientes = (function () {
         var nombreCompleto = function (o) { return ((o.nombre || "") + " " + (o.apellido || "")).trim(); };
         return Promise.all([
             cargarCatalogos().then(function (c) {
-                llenarSelect($("tipoJuridico"), c.juridicos);
-                llenarSelect($("tipoAccion"), c.acciones);
-                llenarSelect($("tipoIntencion"), c.intenciones);
+                llenarSelectDelitos($("idDelito"), c.delitos);
             }),
             cargarLista("/sucursales", selSucursal, CLAVES.sucursal, function (o) { return o.direccion; }),
             cargarLista("/jueces", selJuez, CLAVES.juez, nombreCompleto),
@@ -203,11 +207,8 @@ var Expedientes = (function () {
     // Arma el JSON que espera el back: el ilícito va ANIDADO dentro del expediente
     function leer() {
         var ilicito = {
-            descripcion: $("descripcionIl").value.trim(),
-            anosCondena: entero("anosIl"),
-            idTipoJuridico: elegido("tipoJuridico"),
-            idTipoAccion: elegido("tipoAccion"),
-            idTipoIntencion: elegido("tipoIntencion")
+            idDelito: elegido("idDelito"),
+            anosCondena: entero("anosIl")
         };
         if (idIlicitoActual !== null) ilicito.id = idIlicitoActual;   // modificar: se actualiza ese ilícito
 
@@ -234,11 +235,8 @@ var Expedientes = (function () {
         selJuez.setValor(e.claveJuez);
         selDelincuentes.setValores(e.clavesDelincuentes);
         $("descripcionExp").value = e.descripcion || "";
-        $("descripcionIl").value = il.descripcion || "";
+        $("idDelito").value = il.idDelito === null || il.idDelito === undefined ? "" : il.idDelito;
         $("anosIl").value = il.anosCondena === null || il.anosCondena === undefined ? "" : il.anosCondena;
-        $("tipoJuridico").value = il.idTipoJuridico === null || il.idTipoJuridico === undefined ? "" : il.idTipoJuridico;
-        $("tipoAccion").value = il.idTipoAccion === null || il.idTipoAccion === undefined ? "" : il.idTipoAccion;
-        $("tipoIntencion").value = il.idTipoIntencion === null || il.idTipoIntencion === undefined ? "" : il.idTipoIntencion;
         $("esCulpable").checked = !!e.esCulpable;
         $("tieneCondena").checked = !!e.tieneCondena;
         actualizarCondena();

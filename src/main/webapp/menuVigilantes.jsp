@@ -7,9 +7,21 @@
         <title>Sistema - Menú Vigilantes</title>
         <link rel="stylesheet" href="js/estilos.css">
         <style>
-            .menu { max-width: 460px; margin: 40px auto; }
-            .volver { display: block; text-align: center; margin-top: 16px; color: #6c757d; text-decoration: none; font-size: 14px; }
-            .volver:hover { text-decoration: underline; }
+            .menu {
+                max-width: 460px;
+                margin: 40px auto;
+            }
+            .volver {
+                display: block;
+                text-align: center;
+                margin-top: 16px;
+                color: #6c757d;
+                text-decoration: none;
+                font-size: 14px;
+            }
+            .volver:hover {
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
@@ -32,20 +44,25 @@
 
         <script src="js/sesion.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
-            if (u) {
-                var rol = (u.rol || "").toUpperCase();
-                document.getElementById("saludo").innerText = rol + " · " + u.mail;
+                var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
+                if (u) {
+                    var rol = (u.rol || "").toUpperCase();
+                    document.getElementById("saludo").innerText = rol + " · " + u.mail;
 
-                // El investigador solo consulta: se ocultan alta, modificación y baja
-                if (rol === "INVESTIGADOR") {
-                    ["btnCrear", "btnModificar", "btnEliminar"].forEach(function (id) {
-                        var el = document.getElementById(id);
-                        if (el) el.style.display = "none";
-                    });
-                    document.getElementById("btnVolver").href = "investigador.jsp";
+                    // El investigador solo consulta: se ocultan alta, modificación y baja
+                    if (rol === "INVESTIGADOR" || rol === "CHUSMA") {
+                        ["btnCrear", "btnModificar", "btnEliminar"].forEach(function (id) {
+                            var el = document.getElementById(id);
+                            if (el)
+                                el.style.display = "none";
+                        });
+                        if (rol === "CHUSMA") {
+                            document.getElementById("btnVolver").href = "chusma.jsp";
+                        } else if (rol === "INVESTIGADOR") {
+                            document.getElementById("btnVolver").href = "investigador.jsp";
+                        }
+                    }
                 }
-            }
         </script>
     </body>
 </html>

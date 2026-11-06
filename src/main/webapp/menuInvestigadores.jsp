@@ -7,7 +7,10 @@
         <title>Sistema - Menú Investigadores</title>
         <link rel="stylesheet" href="js/estilos.css">
         <style>
-            .menu { max-width: 460px; margin: 40px auto; }
+            .menu {
+                max-width: 460px;
+                margin: 40px auto;
+            }
             .volver {
                 display: block;
                 text-align: center;
@@ -16,7 +19,9 @@
                 text-decoration: none;
                 font-size: 14px;
             }
-            .volver:hover { text-decoration: underline; }
+            .volver:hover {
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
@@ -39,23 +44,25 @@
 
         <script src="js/sesion.js"></script>
         <script>
-            // 1. Permitimos acceso a Admin e Investigador
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
-            
-            if (u) {
-                var rol = (u.rol || "").toUpperCase();
-                document.getElementById("saludo").innerText = rol + " · " + u.mail;
+                // 1. Permitimos acceso a Admin e Investigador
+                var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
 
-                // 2. Si entra un Investigador, ocultamos el botón de crear y ajustamos el retorno
-                if (rol === "INVESTIGADOR") {
-                    document.getElementById("btnCrear").style.display = "none";
-                    document.getElementById("btnModificar").style.display = "none";
-                    document.getElementById("btnEliminar").style.display = "none";
-                    document.getElementById("btnVolver").href = "investigador.jsp";
-                } else {
-                    document.getElementById("btnVolver").href = "admin.jsp";
+                if (u) {
+                    var rol = (u.rol || "").toUpperCase();
+                    document.getElementById("saludo").innerText = rol + " · " + u.mail;
+
+                    // 2. Si entra un Investigador, ocultamos el botón de crear y ajustamos el retorno
+                    if (rol === "INVESTIGADOR" || rol === "CHUSMA") {
+                        document.getElementById("btnCrear").style.display = "none";
+                        document.getElementById("btnModificar").style.display = "none";
+                        document.getElementById("btnEliminar").style.display = "none";
+                        if (rol === "CHUSMA") {
+                            document.getElementById("btnVolver").href = "chusma.jsp";
+                        } else if (rol === "INVESTIGADOR") {
+                            document.getElementById("btnVolver").href = "investigador.jsp";
+                        }
+                    }
                 }
-            }
         </script>
     </body>
 </html>
