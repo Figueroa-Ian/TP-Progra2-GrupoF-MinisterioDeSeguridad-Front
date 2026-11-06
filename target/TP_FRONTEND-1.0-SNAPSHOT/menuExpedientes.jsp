@@ -32,11 +32,11 @@
 
         <script src="js/sesion.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "CHUSMA"]);
+            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
             if (u) {
                 document.getElementById("saludo").innerText = "Administrador · " + u.mail;
                 
-                if (rol === "CHUSMA") {
+                if (rol === "INVESTIGADOR" || rol === "CHUSMA") {
                         document.getElementById("btnCrear").style.display = "none";
                         document.getElementById("btnModificar").style.display = "none";
                         document.getElementById("btnEliminar").style.display = "none";
