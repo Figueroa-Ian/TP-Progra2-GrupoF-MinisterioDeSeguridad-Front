@@ -7,8 +7,7 @@ La aplicación consume una API RESTful desarrollada en Spring Boot y proporciona
 ## 💻 Tecnologías Utilizadas
 
 * **Estructura y Estilos:** HTML5, CSS3, JSP (JavaServer Pages)
-* **Lógica de Cliente:** JavaScript (Vanilla JS)
-* **Peticiones HTTP:** Fetch API (manejo de promesas y JSON)
+* **Peticiones HTTP:** API (JSON)
 * **Despliegue:** Empaquetado como WAR integrado con el servidor embebido del Back-End o en Tomcat.
 
 ## 👤 Actores y Roles del Sistema
