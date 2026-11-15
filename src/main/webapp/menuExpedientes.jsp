@@ -21,19 +21,33 @@
         <div class="menu contenedor">
             <h1>Menú Expedientes</h1>
 
-            <a class="btn" href="crearExpediente.jsp">+ Registrar Expediente</a>
+            <a id="btnCrear" class="btn" href="crearExpediente.jsp">+ Registrar Expediente</a>
             <a class="btn" href="listadoExpedientes.jsp">Ver Listado de Expedientes</a>
             <a class="btn" href="buscarExpediente.jsp">Buscar por Id</a>
-            <a class="btn" href="modificarExpediente.jsp">Modificar Expediente</a>
-            <a class="btn" href="eliminarExpediente.jsp">Eliminar Expediente</a>
+            <a id="btnModificar" class="btn" href="modificarExpediente.jsp">Modificar Expediente</a>
+            <a id="btnEliminar" class="btn" href="eliminarExpediente.jsp">Eliminar Expediente</a>
 
             <a class="volver" href="admin.jsp">← Volver al menú principal</a>
         </div>
 
         <script src="js/sesion.js"></script>
         <script>
-            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "CHUSMA"]);
-            if (u) document.getElementById("saludo").innerText = "Administrador · " + u.mail;
+            var u = Sesion.exigir(["ADMIN", "ADMINISTRADOR", "INVESTIGADOR", "CHUSMA"]);
+            if (u) {
+                document.getElementById("saludo").innerText = "Administrador · " + u.mail;
+                
+                if (rol === "INVESTIGADOR" || rol === "CHUSMA") {
+                        document.getElementById("btnCrear").style.display = "none";
+                        document.getElementById("btnModificar").style.display = "none";
+                        document.getElementById("btnEliminar").style.display = "none";
+                        if (rol === "CHUSMA") {
+                            document.getElementById("btnVolver").href = "chusma.jsp";
+                        } else if (rol === "INVESTIGADOR") {
+                            document.getElementById("btnVolver").href = "investigador.jsp";
+                        }
+                    }
+                }
+            }
         </script>
     </body>
 </html>

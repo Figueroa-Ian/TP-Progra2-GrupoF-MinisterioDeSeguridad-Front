@@ -23,8 +23,11 @@
             <a class="btn" href="menuDelincuentes.jsp">Consultar Delincuentes</a>
             <a class="btn" href="menuBandas.jsp">Consultar Bandas</a>
             <a class="btn" href="menuSucursales.jsp">Consultar Sucursales</a>
+            <a class="btn" href="menuContrataciones.jsp">Consultar Contrataciones</a>
             <a class="btn" href="menuInvestigadores.jsp">Consultar Investigadores</a>
             <a class="btn" href="menuVigilantes.jsp">Consultar Vigilantes</a>
+            <a class="btn" href="menuDelitos.jsp">Consultar Delitos</a>
+            
             
             <hr style="margin: 20px 0; border: 1px solid #ced4da;">
             <!-- Única acción de modificación permitida -->

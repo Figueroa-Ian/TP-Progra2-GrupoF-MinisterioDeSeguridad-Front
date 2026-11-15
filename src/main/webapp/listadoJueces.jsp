@@ -42,7 +42,7 @@
             <div id="mensaje" class="mensaje error" style="display:none; margin-top:15px;"></div>
 
             <br>
-            <a class="volver" href="index.jsp">← Volver al menú</a>
+            <a class="volver" href="menuJueces.jsp">← Volver al menú</a>
         </div>
 
         <script src="js/sesion.js"></script>
